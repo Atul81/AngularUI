@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="https://unpkg.com/@progress/kendo-theme-default@latest/dist/all.css" />
+<div>
+  <span *ngIf="showLoading" class="k-icon k-i-loading" style="color: #ff6358"></span>
+  <kendo-grid [data]="gridData" [pageSize]="state.take" [skip]="state.skip" [sort]="state.sort" [filter]="state.filter"
+    [sortable]="true" [pageable]="true" filterable="menu" (dataStateChange)="dataStateChange($event)">
+    <kendo-grid-column field="memberId" title="ID" width="80" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="loanAmnt" title="Loan" width="80" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="fundedAmnt" title="Unit Price" width="80" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="term" title="Term" width="180">
+      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+        <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
+        </kendo-grid-string-filter-cell>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="intRate" title="Interest" width="80" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="installment" title="installment" width="180" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="grade" title="Grade" width="80">
+      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+        <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
+        </kendo-grid-string-filter-cell>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="empTitle" title="Employee Tile" width="180">
+      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+        <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
+        </kendo-grid-string-filter-cell>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="empLength" title="Employee Length" width="180">
+      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+        <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
+        </kendo-grid-string-filter-cell>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="homeOwnership" title="Home  OwnerShip" width="180">
+      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+        <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
+        </kendo-grid-string-filter-cell>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="annualInc" title="Annual Income" width="180" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="verificationStatus" title="Verification Status" width="180">
+      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+        <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
+        </kendo-grid-string-filter-cell>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="issueD" title="Issue Date" width="180">
+      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+        <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
+        </kendo-grid-string-filter-cell>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="loanStatus" title="Loan Status" width="180">
+      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+        <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
+        </kendo-grid-string-filter-cell>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="desc" title="Desc" width="180">
+      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+        <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
+        </kendo-grid-string-filter-cell>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="purpose" title="Purpose" width="180">
+      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+        <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
+        </kendo-grid-string-filter-cell>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="title" title="Title" width="180">
+      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+        <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
+        </kendo-grid-string-filter-cell>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="addrState" title="Address State">
+      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+        <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
+        </kendo-grid-string-filter-cell>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="lastPymntD" title="Last Payment Date" width="100">
+      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+        <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
+        </kendo-grid-string-filter-cell>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="lastPymntAmnt" title="Last Payment Amount" width="180" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+  </kendo-grid>
+</div>
