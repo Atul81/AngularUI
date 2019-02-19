@@ -1,8 +1,14 @@
-<h1>Greeting</h1>
-<div [hidden]="!authenticated()">
-  <p>The ID is {{greeting.id}}</p>
-  <p>The content is {{greeting.content}}</p>
-</div>
-<div [hidden]="authenticated()">
-  <p>Login to see your greeting</p>
+<link rel="stylesheet" href="https://unpkg.com/@progress/kendo-theme-default@latest/dist/all.css" />
+<h1>Greeting   {{showHtml}}</h1>
+<div>
+  <kendo-chart [categoryAxis]="{ categories: categories }">
+    <kendo-chart-title text="Gross domestic product growth /GDP annual %/"></kendo-chart-title>
+    <kendo-chart-legend position="bottom" orientation="horizontal"></kendo-chart-legend>
+    <kendo-chart-tooltip format="{0}%"></kendo-chart-tooltip>
+    <kendo-chart-series>
+      <kendo-chart-series-item *ngFor="let item of series" type="line" [style]="smooth" [data]="item.data"
+        [name]="item.name">
+      </kendo-chart-series-item>
+    </kendo-chart-series>
+  </kendo-chart>
 </div>

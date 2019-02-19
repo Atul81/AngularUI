@@ -6,7 +6,7 @@ import {
   DataStateChangeEvent
 } from '@progress/kendo-angular-grid';
 import { Router } from '@angular/router';
-import { AppService, dataSource } from '../app.services';
+import { AppService } from '../app.services';
 
 
 @Component({
@@ -26,35 +26,39 @@ export class CardDetailsComponent {
 
   public state: State = {
     skip: 0,
-    take: 5,
+    take: 12,
 
     filter: {
       logic: 'and',
-      filters: [{ field: 'homeOwnership', operator: 'contains', value: 'RENT' }]
+      filters: []
     }
   };
 
-  public gridData: GridDataResult = process(dataSource, this.state);
+  public gridData: GridDataResult;
 
   constructor(public apiService: AppService, private router: Router) { }
 
-  // ngOnInit(): void {
-  //   // this.apiService.getAllCustomers().subscribe((data : {}) => {
-  //   //   console.log(data);
-  //   // });
-  //   this.responseData  = dataSource;
-  //   // this.responseData  = this.responseData.responseBody; 
-  //   this.gridData = process(this.responseData, this.state);
-  //   this.showLoading = false;
-  // }
+  ngOnInit(): void {
+    this.apiService.getAllCustomers().subscribe((data: {}) => {
+      this.fetchData(data);
+    });
+  }
+
+  public fetchData(data: {}) {
+    this.responseData = data;
+    this.responseData = this.responseData.responseBody;
+    this.gridData = process(this.responseData, this.state);
+    console.log(this.gridData);
+    this.showLoading = false;
+  }
 
   public dataStateChange(state: DataStateChangeEvent): void {
     this.state = state;
-    this.gridData = process(dataSource, this.state);
+    this.gridData = process(this.responseData, this.state);
   }
 
-  public onRowClick(dataItem) {
-    this.router.navigate(['editField', dataItem.dataItem.memberId]);
+  public onRowClick(dataItem: { dataItem: { cardNum: any; }; }) {
+    this.router.navigate(['home', dataItem.dataItem.cardNum]);
   }
 
 }

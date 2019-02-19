@@ -11,6 +11,10 @@ import { AppService, XhrInterceptor } from './app.services';
 import { CardDetailsComponent } from './card-details/card-details.component';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { InputsModule } from '@progress/kendo-angular-inputs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuardService } from './auth-guard-service';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -21,14 +25,16 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
     InputsModule,
     GridModule,
+    ChartsModule
   ],
-  providers: [AppService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
+  providers: [AppService, AuthGuardService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

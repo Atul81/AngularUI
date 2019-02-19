@@ -2,98 +2,125 @@
 <div>
   <span *ngIf="showLoading" class="k-icon k-i-loading" style="color: #ff6358"></span>
   <kendo-grid [data]="gridData" [pageSize]="state.take" [skip]="state.skip" [sort]="state.sort" [filter]="state.filter"
-    [sortable]="true" [pageable]="true" filterable="menu" (dataStateChange)="dataStateChange($event)">
-    <kendo-grid-column field="memberId" title="ID" width="80" filter="numeric" format="{0:c}">
+    [sortable]="true" [pageable]="true" filterable="menu" (dataStateChange)="dataStateChange($event)" (cellClick)="onRowClick($event)">
+    <kendo-grid-column field="cardNum" title="ID" width="80" filter="numeric" format="{0:c}">
     </kendo-grid-column>
-    <kendo-grid-column field="loanAmnt" title="Loan" width="80" filter="numeric" format="{0:c}">
+    <kendo-grid-column field="name" title="Name" width="150" filter="numeric" format="{0:c}">
     </kendo-grid-column>
-    <kendo-grid-column field="fundedAmnt" title="Unit Price" width="80" filter="numeric" format="{0:c}">
+    <kendo-grid-column field="limBal" title="Limit Balance" width="80" filter="numeric" format="{0:c}">
     </kendo-grid-column>
-    <kendo-grid-column field="term" title="Term" width="180">
+    <kendo-grid-column field="sexDesc" title="Sex" width="180">
+      <!-- <ng-template kendoGridCellTemplate let-dataItem>
+        {{dataItem.sex == 1 ? 'Male' : 'Female'}}
+      </ng-template> -->
       <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
         <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
         </kendo-grid-string-filter-cell>
       </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="intRate" title="Interest" width="80" filter="numeric" format="{0:c}">
-    </kendo-grid-column>
-    <kendo-grid-column field="installment" title="installment" width="180" filter="numeric" format="{0:c}">
-    </kendo-grid-column>
-    <kendo-grid-column field="grade" title="Grade" width="80">
+    <kendo-grid-column field="eduNm" title="Education" width="180">
+      <!-- <ng-template kendoGridCellTemplate let-dataItem>
+        {{dataItem.education == 1 ? 'Graduate School' : dataItem.education == 2 ? 'University' :dataItem.education == 3 ? 'High School' :dataItem.education == 4 ? 'Others' :dataItem.education == 5 ? 'Unknown' : 'Unknown'}}
+      </ng-template> -->
       <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
         <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
         </kendo-grid-string-filter-cell>
       </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="empTitle" title="Employee Tile" width="180">
+    <kendo-grid-column field="marNm" title="Marriage" width="180">
+      <!-- <ng-template kendoGridCellTemplate let-dataItem>
+        {{dataItem.marriage == 1 ? 'Married' : dataItem.marriage == 2 ? 'Single' : 'Others'}}
+      </ng-template> -->
       <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
         <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
         </kendo-grid-string-filter-cell>
       </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="empLength" title="Employee Length" width="180">
+    <kendo-grid-column field="age" title="Age" width="80" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="pay0" title="Pay1" width="80">
+      <!-- <ng-template kendoGridCellTemplate let-dataItem>
+        {{dataItem.pay0 == -1 ? 'Pay Dully' : dataItem.pay0 == 1 ? 'Payment Delayed for One Month': dataItem.pay0 == 2 ? 'Payment Delayed for Two Months': dataItem.pay0 == 3 ? 'Payment Delayed for Three Months': dataItem.pay0 == 4 ? 'Payment Delayed for Four Months': dataItem.pay0 == 5 ? 'Payment Delayed for Five Months': dataItem.pay0 == 6 ? 'Payment Delayed for Six Months': dataItem.pay0 == 7 ? 'Payment Delayed for Seven Months': dataItem.pay0 == 8 ? 'Payment Delayed for Eight Months': dataItem.pay0 == 9 ? 'Payment Delayed for Nine Months': dataItem.pay0 == 10 ? 'Payment Delayed for Ten Months': dataItem.pay0 == 11 ? 'Payment Delayed for Eleven Months' : 'Payment Delayed for Tweleve Months'}}
+      </ng-template> -->
       <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
         <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
         </kendo-grid-string-filter-cell>
       </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="homeOwnership" title="Home  OwnerShip" width="180">
+    <kendo-grid-column field="pay2" title="Pay2" width="80">
+      <!-- <ng-template kendoGridCellTemplate let-dataItem>
+        {{dataItem.pay2 == -1 ? 'Pay Dully' : dataItem.pay2 == 1 ? 'Payment Delayed for One Month': dataItem.pay2 == 2 ? 'Payment Delayed for Two Months': dataItem.pay2 == 3 ? 'Payment Delayed for Three Months': dataItem.pay2 == 4 ? 'Payment Delayed for Four Months': dataItem.pay2 == 5 ? 'Payment Delayed for Five Months': dataItem.pay2 == 6 ? 'Payment Delayed for Six Months': dataItem.pay2 == 7 ? 'Payment Delayed for Seven Months': dataItem.pay2 == 8 ? 'Payment Delayed for Eight Months': dataItem.pay2 == 9 ? 'Payment Delayed for Nine Months': dataItem.pay2 == 10 ? 'Payment Delayed for Ten Months': dataItem.pay2 == 11 ? 'Payment Delayed for Eleven Months' : 'Payment Delayed for Tweleve Months'}}
+      </ng-template> -->
       <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
         <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
         </kendo-grid-string-filter-cell>
       </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="annualInc" title="Annual Income" width="180" filter="numeric" format="{0:c}">
-    </kendo-grid-column>
-    <kendo-grid-column field="verificationStatus" title="Verification Status" width="180">
+    <kendo-grid-column field="pay3" title="Pay3" width="80">
+      <!-- <ng-template kendoGridCellTemplate let-dataItem>
+        {{dataItem.pay3 == -1 ? 'Pay Dully' : dataItem.pay3 == 1 ? 'Payment Delayed for One Month': dataItem.pay3 == 2 ? 'Payment Delayed for Two Months': dataItem.pay3 == 3 ? 'Payment Delayed for Three Months': dataItem.pay3 == 4 ? 'Payment Delayed for Four Months': dataItem.pay3 == 5 ? 'Payment Delayed for Five Months': dataItem.pay3 == 6 ? 'Payment Delayed for Six Months': dataItem.pay3 == 7 ? 'Payment Delayed for Seven Months': dataItem.pay3 == 8 ? 'Payment Delayed for Eight Months': dataItem.pay3 == 9 ? 'Payment Delayed for Nine Months': dataItem.pay3 == 10 ? 'Payment Delayed for Ten Months': dataItem.pay3 == 11 ? 'Payment Delayed for Eleven Months' : 'Payment Delayed for Tweleve Months'}}
+      </ng-template> -->
       <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
         <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
         </kendo-grid-string-filter-cell>
       </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="issueD" title="Issue Date" width="180">
+    <kendo-grid-column field="pay4" title="Pay4" width="80">
+      <!-- <ng-template kendoGridCellTemplate let-dataItem>
+        {{dataItem.pay4 == -1 ? 'Pay Dully' : dataItem.pay4 == 1 ? 'Payment Delayed for One Month': dataItem.pay4 == 2 ? 'Payment Delayed for Two Months': dataItem.pay4 == 3 ? 'Payment Delayed for Three Months': dataItem.pay4 == 4 ? 'Payment Delayed for Four Months': dataItem.pay4 == 5 ? 'Payment Delayed for Five Months': dataItem.pay4 == 6 ? 'Payment Delayed for Six Months': dataItem.pay4 == 7 ? 'Payment Delayed for Seven Months': dataItem.pay4 == 8 ? 'Payment Delayed for Eight Months': dataItem.pay4 == 9 ? 'Payment Delayed for Nine Months': dataItem.pay4 == 10 ? 'Payment Delayed for Ten Months': dataItem.pay4 == 11 ? 'Payment Delayed for Eleven Months' : 'Payment Delayed for Tweleve Months'}}
+      </ng-template> -->
       <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
         <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
         </kendo-grid-string-filter-cell>
       </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="loanStatus" title="Loan Status" width="180">
+    <kendo-grid-column field="pay5" title="Pay5" width="80">
+      <!-- <ng-template kendoGridCellTemplate let-dataItem>
+        {{dataItem.pay5 == -1 ? 'Pay Dully' : dataItem.pay5 == 1 ? 'Payment Delayed for One Month': dataItem.pay5 == 2 ? 'Payment Delayed for Two Months': dataItem.pay5 == 3 ? 'Payment Delayed for Three Months': dataItem.pay5 == 4 ? 'Payment Delayed for Four Months': dataItem.pay5 == 5 ? 'Payment Delayed for Five Months': dataItem.pay5 == 6 ? 'Payment Delayed for Six Months': dataItem.pay5 == 7 ? 'Payment Delayed for Seven Months': dataItem.pay5 == 8 ? 'Payment Delayed for Eight Months': dataItem.pay5 == 9 ? 'Payment Delayed for Nine Months': dataItem.pay5 == 10 ? 'Payment Delayed for Ten Months': dataItem.pay5 == 11 ? 'Payment Delayed for Eleven Months' : 'Payment Delayed for Tweleve Months'}}
+      </ng-template> -->
       <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
         <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
         </kendo-grid-string-filter-cell>
       </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="desc" title="Desc" width="180">
+    <kendo-grid-column field="pay6" title="Pay6" width="80">
+      <!-- <ng-template kendoGridCellTemplate let-dataItem>
+        {{dataItem.pay6 == -1 ? 'Pay Dully' : dataItem.pay6 == 1 ? 'Payment Delayed for One Month': dataItem.pay6 == 2 ? 'Payment Delayed for Two Months': dataItem.pay6 == 3 ? 'Payment Delayed for Three Months': dataItem.pay6 == 4 ? 'Payment Delayed for Four Months': dataItem.pay6 == 5 ? 'Payment Delayed for Five Months': dataItem.pay6 == 6 ? 'Payment Delayed for Six Months': dataItem.pay6 == 7 ? 'Payment Delayed for Seven Months': dataItem.pay6 == 8 ? 'Payment Delayed for Eight Months': dataItem.pay6 == 9 ? 'Payment Delayed for Nine Months': dataItem.pay6 == 10 ? 'Payment Delayed for Ten Months': dataItem.pay6 == 11 ? 'Payment Delayed for Eleven Months' : 'Payment Delayed for Tweleve Months'}}
+      </ng-template> -->
       <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
         <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
         </kendo-grid-string-filter-cell>
       </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="purpose" title="Purpose" width="180">
+    <kendo-grid-column field="billAmt1" title="Bill Amount 1 (NTD)" width="80" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="billAmt2" title="Bill Amount 2 (NTD)" width="80" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="billAmt3" title="Bill Amount 3 (NTD)" width="80" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="billAmt4" title="Bill Amount 4 (NTD)" width="80" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="billAmt5" title="Bill Amount 5 (NTD)" width="80" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="billAmt6" title="Bill Amount 6 (NTD)" width="80" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="payAmt1" title="Amount Due 1 (NTD)" width="80" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="payAmt2" title="Amount Due 1 (NTD)" width="80" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="payAmt3" title="Amount Due 1 (NTD)" width="80" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="payAmt4" title="Amount Due 1 (NTD)" width="80" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="payAmt5" title="Amount Due 1 (NTD)" width="80" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="payAmt6" title="Amount Due 1 (NTD)" width="80" filter="numeric" format="{0:c}">
+    </kendo-grid-column>
+    <kendo-grid-column field="payNextMonth" title="Default Payment" width="80">
       <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
         <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
         </kendo-grid-string-filter-cell>
       </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="title" title="Title" width="180">
-      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
-        <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
-        </kendo-grid-string-filter-cell>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="addrState" title="Address State">
-      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
-        <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
-        </kendo-grid-string-filter-cell>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="lastPymntD" title="Last Payment Date" width="100">
-      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
-        <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
-        </kendo-grid-string-filter-cell>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="lastPymntAmnt" title="Last Payment Amount" width="180" filter="numeric" format="{0:c}">
     </kendo-grid-column>
   </kendo-grid>
 </div>
